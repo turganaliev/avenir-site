@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avenir International School — Bishkek</title>
+<meta name="description" content="Avenir International School (ОсОО «Международная школа «Авенир») — licensed general education school, grades 1–12, Bishkek, Kyrgyz Republic.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#0f3b2b; --green:#1f7a4d; --leaf:#3fae6a; --sage:#eef4ef; --mist:#dcebe0;
+    --sun:#f2b632; --ink:#12241d; --muted:#55665e; --line:#d9e4dc; --white:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  html,body{overflow-x:clip}
+  body{font-family:Onest,system-ui,sans-serif;font-size:17px;line-height:1.6;color:var(--ink);background:var(--white)}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:6px}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+  .display{font-family:Unbounded,Onest,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.08}
+
+  /* header */
+  header{position:fixed;inset:0 0 auto 0;z-index:30;transition:background .25s,box-shadow .25s}
+  header.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:76px}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+  .logo-img{width:42px;height:42px;border-radius:12px;flex:none;object-fit:cover}
+  .logo-fallback{display:none;width:42px;height:42px;border-radius:12px;flex:none;background:linear-gradient(135deg,var(--forest),var(--leaf));color:#fff;place-items:center;font-family:Unbounded;font-weight:700}
+  .logo.noimg .logo-img{display:none} .logo.noimg .logo-fallback{display:grid}
+  .lockup{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+  .lockup .t1{font-size:16px;color:#fff;white-space:nowrap}
+  .lockup .t1 strong{font-family:Unbounded;font-weight:700;margin-right:6px}
+  .lockup .t2{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+  header.solid .lockup .t1{color:var(--forest)} header.solid .lockup .t2{color:var(--muted)}
+  nav.menu{display:flex;gap:28px;font-weight:500;font-size:15px}
+  nav.menu a{text-decoration:none;color:rgba(255,255,255,.82)} nav.menu a:hover{color:#fff}
+  header.solid nav.menu a{color:var(--muted)} header.solid nav.menu a:hover{color:var(--green)}
+  .tools{display:flex;align-items:center;gap:10px}
+  .lang{display:flex;background:rgba(255,255,255,.12);border-radius:999px;padding:3px}
+  header.solid .lang{background:var(--sage)}
+  .lang button{border:0;background:none;font:600 12px Onest;color:rgba(255,255,255,.75);padding:5px 11px;border-radius:999px;cursor:pointer}
+  header.solid .lang button{color:var(--muted)}
+  .lang button[aria-pressed=true]{background:#fff;color:var(--forest)}
+  header.solid .lang button[aria-pressed=true]{background:var(--forest);color:#fff}
+  .btn{display:inline-flex;align-items:center;gap:8px;font:600 15px Onest;text-decoration:none;padding:13px 22px;border-radius:12px;transition:background .15s,transform .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.solid{background:var(--green);color:#fff} .btn.solid:hover{background:var(--forest)}
+  .btn.soft{background:var(--sage);color:var(--forest)} .btn.soft:hover{background:var(--mist)}
+  .btn.sun{background:var(--sun);color:var(--forest)} .btn.sun:hover{background:#ffd06a}
+  .btn.glass{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#fff} .btn.glass:hover{background:rgba(255,255,255,.18)}
+  .btn.small{padding:9px 14px;font-size:14px}
+
+  /* hero */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:var(--forest)}
+  .hero-bg{position:absolute;inset:0;background:center 35%/cover no-repeat;transform:scale(1.04)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:1;background:
+     radial-gradient(ellipse at 50% 45%,rgba(9,40,29,.45),rgba(9,40,29,.72) 70%),
+     linear-gradient(180deg,rgba(9,40,29,.2),rgba(9,40,29,.9) 100%)}
+  .hero-inner{position:relative;z-index:2;padding-top:120px;padding-bottom:90px}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);padding:7px 15px;border-radius:999px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;margin-bottom:28px}
+  .pill i{width:8px;height:8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 4px rgba(242,182,50,.25)}
+  .hero h1{font-size:clamp(40px,7vw,88px);line-height:1.02;margin:0 auto 24px;max-width:13em}
+  .hero h1 .grad{display:block;background:linear-gradient(90deg,#8ee3a8,#c6ec6b 50%,var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{font-size:clamp(16px,1.8vw,19px);color:rgba(255,255,255,.8);max-width:36em;margin:0 auto 34px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .strip{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 36px;margin-top:64px;font-size:13px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.6)}
+  @media (prefers-reduced-motion:no-preference){
+    .pill,.hero h1,.hero p,.actions,.strip{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+    .hero h1{animation-delay:.08s}.hero p{animation-delay:.16s}.actions{animation-delay:.24s}.strip{animation-delay:.32s}
+    .hero-bg{animation:zoom 14s ease-out both}
+    @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    @keyframes zoom{from{transform:scale(1.12)}to{transform:scale(1.04)}}
+  }
+  .placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:14px;padding:20px;border:2px dashed #b8cbbf;border-radius:inherit}
+
+  .burger{display:none;width:42px;height:42px;border-radius:12px;border:0;background:rgba(255,255,255,.12);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:6px}
+  .burger span{display:block;width:18px;height:2px;border-radius:2px;background:#fff;transition:transform .2s}
+  header.solid .burger,header.open .burger{background:var(--sage)}
+  header.solid .burger span,header.open .burger span{background:var(--forest)}
+  header.open .burger span:first-child{transform:translateY(4px) rotate(45deg)}
+  header.open .burger span:last-child{transform:translateY(-4px) rotate(-45deg)}
+  .mnav{display:none}
+  header.open{background:#fff;box-shadow:0 1px 0 var(--line)}
+  header.open .lockup .t1{color:var(--forest)}
+  header.open .lang{background:var(--sage)} header.open .lang button{color:var(--muted)}
+  header.open .lang button[aria-pressed=true]{background:var(--forest);color:#fff}
+  header.open .mnav{display:flex;flex-direction:column;gap:2px;padding:6px 20px 20px;border-top:1px solid var(--line)}
+  .mnav a:not(.btn){text-decoration:none;color:var(--forest);font-weight:500;font-size:18px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .mnav .btn{margin-top:14px;justify-content:center}
+
+  /* shared */
+  .sec{padding:90px 0}
+  .sec-title{font-size:clamp(28px,3.6vw,42px);color:var(--forest);margin-bottom:12px}
+  .sec-lead{color:var(--muted);max-width:36em;margin-bottom:36px}
+
+  /* education */
+  .edu{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:16px}
+  .edu .tile{border-radius:22px;padding:26px;background:var(--sage)}
+  .edu .tile.main{background:var(--forest);color:#fff}
+  .edu .tile h3{font-family:Unbounded;font-size:19px;margin-bottom:8px;line-height:1.25}
+  .edu .tile p{font-size:15px;color:var(--muted)}
+  .edu .tile.main p{color:rgba(255,255,255,.78)}
+  .edu .big{font-family:Unbounded;font-weight:700;font-size:56px;line-height:1;color:var(--sun);margin-bottom:14px}
+
+  .edu2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+  .feat{border:1px solid var(--line);border-radius:22px;padding:26px;background:#fff}
+  .feat .tag{display:inline-block;font-family:Unbounded;font-weight:700;font-size:15px;color:var(--green);background:var(--sage);padding:6px 12px;border-radius:10px;margin-bottom:14px}
+  .feat h3{font-family:Unbounded;font-size:18px;line-height:1.25;margin-bottom:8px;color:var(--forest)}
+  .feat p{font-size:15px;color:var(--muted)}
+  .approach{margin-top:32px}
+  .approach h3{font-size:18px;margin-bottom:14px;color:var(--forest)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--sage);color:var(--forest);padding:10px 16px;border-radius:999px;font-weight:500;font-size:15px}
+
+  /* school life */
+  .life{background:var(--sage)}
+  .life-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .item{background:#fff;border-radius:20px;padding:24px}
+  .item .ic{width:48px;height:48px;border-radius:14px;background:var(--mist);color:var(--green);display:grid;place-items:center;margin-bottom:16px}
+  .item h3{font-size:18px;margin-bottom:6px}
+  .item p{font-size:15px;color:var(--muted)}
+
+  /* campuses */
+  .camp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .camp{border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+  .camp .pic{position:relative;aspect-ratio:16/9;background:var(--sage) center 45%/cover no-repeat}
+  .camp .body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:6px}
+  .camp h3{font-family:Unbounded;font-size:20px;color:var(--forest)}
+  .camp p{color:var(--muted)}
+  .camp a{margin-top:8px;align-self:flex-start;font-weight:600;color:var(--green);text-decoration:none}
+  .camp a:hover{text-decoration:underline}
+  .camp .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:8px}
+  .camp .links a{margin-top:0}
+
+  /* license */
+  .license{background:var(--forest);color:#fff}
+  .license .sec-title{color:#fff} .license .sec-lead{color:rgba(255,255,255,.7)}
+  .doc{background:#fff;color:var(--ink);border-radius:24px;padding:34px;position:relative;overflow:hidden}
+  .doc::before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(var(--green),var(--leaf))}
+  .doc dl{display:grid;grid-template-columns:230px 1fr;gap:16px 24px}
+  .doc dt{color:var(--muted);font-size:15px}
+  .doc dd{font-weight:600}
+  .blank{background:#fff4d6;color:#8a6510;padding:2px 10px;border-radius:6px}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:12px}
+  .gallery .ph{position:relative;border-radius:20px;overflow:hidden;background:var(--sage) center/cover no-repeat}
+  .gallery .ph:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .gallery .ph:nth-child(6),.gallery .ph:nth-child(7){grid-column:span 2}
+
+  /* contact */
+  .contact{background:var(--sage)}
+  .contact-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px;align-items:start}
+  .lines{display:grid;gap:12px}
+  .line-item{background:#fff;border-radius:18px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;text-decoration:none}
+  .line-item:hover{box-shadow:inset 0 0 0 2px var(--leaf)}
+  .line-item b{font-size:18px;font-weight:600;overflow-wrap:anywhere;min-width:0}
+  .line-item small{color:var(--muted);font-size:14px;text-align:right;flex:none}
+  .cta-box{background:var(--forest);color:#fff;border-radius:24px;padding:32px}
+  .cta-box h3{font-family:Unbounded;font-size:24px;line-height:1.2;margin-bottom:12px}
+  .cta-box p{color:rgba(255,255,255,.75);margin-bottom:22px}
+  .cta-box .btn.solid{background:var(--sun);color:var(--forest)} .cta-box .btn.solid:hover{background:#ffd06a}
+
+  footer{background:#0a2c21;color:rgba(255,255,255,.65);padding:34px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:#fff;text-decoration:none}
+
+  /* language switching (lang spans are always inline) */
+  span[data-lang]{display:none}
+  html[lang=en] span[data-lang=en], html[lang=ru] span[data-lang=ru], html[lang=ky] span[data-lang=ky]{display:inline}
+
+  @media (max-width:900px){
+    nav.menu{display:none}
+    .hero-grid,.camp-grid,.contact-grid{grid-template-columns:1fr}
+    .edu,.edu2,.life-grid{grid-template-columns:1fr}
+    .arch{max-width:420px;width:100%;justify-self:center}
+    .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+    .gallery .ph:nth-child(6),.gallery .ph:nth-child(7){grid-column:span 2}
+    .doc dl{grid-template-columns:1fr;gap:2px} .doc dd{margin-bottom:14px}
+    .tools .btn{display:none}
+    .lockup .t1{font-size:14px} .lockup .t2{font-size:12px}
+    .sec{padding:64px 0}
+  }
+  @media (max-width:900px){
+    .burger{display:flex}
+    .lang button{padding:5px 9px}
+  }
+  @media (max-width:600px){
+    .lockup{display:none}
+    .wrap{padding:0 16px}
+    .sec{padding:56px 0}
+    .sec-lead{margin-bottom:24px}
+    .edu .tile,.feat{padding:22px}
+    .edu .big{font-size:46px}
+    .item{display:grid;grid-template-columns:44px 1fr;gap:4px 14px;padding:18px;align-items:start}
+    .item .ic{width:44px;height:44px;margin:0;grid-row:span 2}
+    .item h3{margin:0;font-size:17px}
+    .life-grid,.edu,.edu2{gap:12px}
+    .chip{font-size:14px;padding:9px 14px}
+    .doc{padding:24px 20px}
+    .line-item{flex-direction:column;align-items:flex-start;gap:2px;padding:14px 18px}
+    .line-item small{text-align:left}
+    .cta-box{padding:24px}
+    .gallery{grid-auto-rows:130px;gap:8px}
+    .gallery .ph{border-radius:14px}
+    .hero-inner{padding-top:100px;padding-bottom:60px}
+    .strip{margin-top:44px;gap:10px 22px;font-size:12px}
+    .actions .btn{flex:1 1 100%;justify-content:center}
+    footer .wrap{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="logo" href="#top">
+      <img class="logo-img" src="logo.png" alt="Avenir International School" onerror="this.parentNode.classList.add('noimg')">
+      <span class="logo-fallback" aria-hidden="true">A</span>
+      <span class="lockup">
+        <span class="t1"><strong>Avenir</strong>International School</span>
+        <span class="t2">Международная школа «Авенир»</span>
+      </span>
+    </a>
+    <nav class="menu" aria-label="Main">
+      <a href="#education"><span data-lang="en">Education</span><span data-lang="ru">Обучение</span><span data-lang="ky">Окутуу</span></a>
+      <a href="#life"><span data-lang="en">School life</span><span data-lang="ru">Жизнь школы</span><span data-lang="ky">Мектеп турмушу</span></a>
+      <a href="#campuses"><span data-lang="en">Campuses</span><span data-lang="ru">Филиалы</span><span data-lang="ky">Филиалдар</span></a>
+      <a href="#license"><span data-lang="en">License</span><span data-lang="ru">Лицензия</span><span data-lang="ky">Лицензия</span></a>
+      <a href="#contact"><span data-lang="en">Contacts</span><span data-lang="ru">Контакты</span><span data-lang="ky">Байланыш</span></a>
+    </nav>
+    <div class="tools">
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-set="ky" aria-pressed="false">KG</button>
+        <button type="button" data-set="ru" aria-pressed="false">RU</button>
+        <button type="button" data-set="en" aria-pressed="true">EN</button>
+      </div>
+      <a class="btn solid small" href="#contact"><span data-lang="en">Enroll</span><span data-lang="ru">Записаться</span><span data-lang="ky">Катталуу</span></a>
+    </div>
+  </div>
+<nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="#education"><span data-lang="en">Education</span><span data-lang="ru">Обучение</span><span data-lang="ky">Окутуу</span></a>
+    <a href="#life"><span data-lang="en">School life</span><span data-lang="ru">Жизнь школы</span><span data-lang="ky">Мектеп турмушу</span></a>
+    <a href="#campuses"><span data-lang="en">Campuses</span><span data-lang="ru">Филиалы</span><span data-lang="ky">Филиалдар</span></a>
+    <a href="#license"><span data-lang="en">License</span><span data-lang="ru">Лицензия</span><span data-lang="ky">Лицензия</span></a>
+    <a href="#contact"><span data-lang="en">Contacts</span><span data-lang="ru">Контакты</span><span data-lang="ky">Байланыш</span></a>
+    <a class="btn sun" href="tel:+996506783805"><span data-lang="en">Call admissions</span><span data-lang="ru">Позвонить в приёмную</span><span data-lang="ky">Кабыл алуу бөлүмүнө чалуу</span></a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-bg" data-src="hero-wide.jpg"></div>
+    <div class="wrap hero-inner">
+      <a class="pill" href="#contact"><i></i><span data-lang="en">Enrollment for 2027 is open</span><span data-lang="ru">Набор на 2027 год открыт</span><span data-lang="ky">2027-жылга кабыл алуу ачык</span></a>
+      <h1 class="display"><span data-lang="en">Avenir<span class="grad">International School</span></span><span data-lang="ru">Международная школа<span class="grad">«Авенир»</span></span><span data-lang="ky">«Авенир»<span class="grad">эл аралык мектеби</span></span></h1>
+      <p><span data-lang="en">A licensed private school in Bishkek for grades 1–12. Kyrgyz, Russian and Cambridge classes, a Canadian and Kyrgyz double diploma, and learning through play.</span><span data-lang="ru">Лицензированная частная школа в Бишкеке, 1–12 классы. Кыргызские, русские и Cambridge-классы, двойной аттестат — канадский и кыргызский, обучение через игру.</span><span data-lang="ky">Бишкектеги лицензиясы бар жеке мектеп, 1–12-класстар. Кыргыз, орус жана Cambridge класстары, канадалык жана кыргыз кош аттестаты, оюн аркылуу окутуу.</span></p>
+      <div class="actions">
+        <a class="btn sun" href="tel:+996506783805"><span data-lang="en">Call admissions</span><span data-lang="ru">Позвонить в приёмную</span><span data-lang="ky">Кабыл алуу бөлүмүнө чалуу</span></a>
+        <a class="btn glass" href="#education"><span data-lang="en">Explore education</span><span data-lang="ru">Об обучении</span><span data-lang="ky">Окутуу жөнүндө</span></a>
+      </div>
+      <div class="strip"><span>CAMBRIDGE</span><span><span data-lang="en">DOUBLE DIPLOMA KG + CA</span><span data-lang="ru">ДВОЙНОЙ АТТЕСТАТ KG + CA</span><span data-lang="ky">КОШ АТТЕСТАТ KG + CA</span></span><span>TOEFL · TOEIC</span><span>STEAM</span></div>
+    </div>
+  </section>
+
+  <section class="sec" id="education">
+    <div class="wrap">
+      <h2 class="display sec-title"><span data-lang="en">Education</span><span data-lang="ru">Обучение</span><span data-lang="ky">Окутуу</span></h2>
+      <p class="sec-lead"><span data-lang="en">General secondary education following the state standard of the Kyrgyz Republic.</span><span data-lang="ru">Общее среднее образование по государственному стандарту Кыргызской Республики.</span><span data-lang="ky">Кыргыз Республикасынын мамлекеттик стандарты боюнча жалпы орто билим берүү.</span></p>
+      <div class="edu">
+        <div class="tile main">
+          <div class="big">1–12</div>
+          <h3><span data-lang="en">Grades 1 to 12</span><span data-lang="ru">С 1 по 12 класс</span><span data-lang="ky">1-класстан 12-класска чейин</span></h3>
+          <p><span data-lang="en">Primary, basic and upper secondary school in one place.</span><span data-lang="ru">Начальная, основная и старшая школа в одном месте.</span><span data-lang="ky">Башталгыч, негизги жана жогорку мектеп бир жерде.</span></p>
+        </div>
+        <div class="tile">
+          <h3><span data-lang="en">Kyrgyz, Russian and Cambridge classes</span><span data-lang="ru">Кыргызские, русские и Cambridge-классы</span><span data-lang="ky">Кыргыз, орус жана Cambridge класстары</span></h3>
+          <p><span data-lang="en">Families choose the language of instruction that suits their child.</span><span data-lang="ru">Семья выбирает язык обучения, подходящий ребёнку.</span><span data-lang="ky">Үй-бүлө балага ылайыктуу окутуу тилин тандайт.</span></p>
+        </div>
+        <div class="tile">
+          <h3><span data-lang="en">Learning through play</span><span data-lang="ru">Обучение через игру</span><span data-lang="ky">Оюн аркылуу окутуу</span></h3>
+          <p><span data-lang="en">Games and hands-on activities help children understand and remember.</span><span data-lang="ru">Игры и практические задания помогают понять и запомнить материал.</span><span data-lang="ky">Оюндар жана практикалык тапшырмалар материалды түшүнүүгө жана эстеп калууга жардам берет.</span></p>
+        </div>
+      </div>
+      <div class="edu2">
+        <div class="feat"><span class="tag">2×</span><h3><span data-lang="en">Canadian and Kyrgyz double diploma</span><span data-lang="ru">Двойной аттестат: канадский и кыргызский</span><span data-lang="ky">Кош аттестат: канадалык жана кыргыз</span></h3><p><span data-lang="en">Graduates can receive both a Kyrgyz and a Canadian school certificate.</span><span data-lang="ru">Выпускники могут получить и кыргызский, и канадский аттестат.</span><span data-lang="ky">Бүтүрүүчүлөр кыргыз жана канадалык аттестатты ала алышат.</span></p></div>
+        <div class="feat"><span class="tag">EN</span><h3><span data-lang="en">TOEFL and TOEIC certificates</span><span data-lang="ru">Сертификаты TOEFL и TOEIC</span><span data-lang="ky">TOEFL жана TOEIC сертификаттары</span></h3><p><span data-lang="en">Students prepare for internationally recognized English exams.</span><span data-lang="ru">Ученики готовятся к международным экзаменам по английскому языку.</span><span data-lang="ky">Окуучулар англис тили боюнча эл аралык экзамендерге даярданышат.</span></p></div>
+        <div class="feat"><span class="tag">STEAM</span><h3><span data-lang="en">STEAM education</span><span data-lang="ru">STEAM-образование</span><span data-lang="ky">STEAM билим берүү</span></h3><p><span data-lang="en">Science, technology, engineering, arts and mathematics taught together.</span><span data-lang="ru">Наука, технологии, инженерия, искусство и математика — вместе.</span><span data-lang="ky">Илим, технология, инженерия, искусство жана математика — бирге.</span></p></div>
+      </div>
+      <div class="approach"><h3><span data-lang="en">Our approach</span><span data-lang="ru">Наш подход</span><span data-lang="ky">Биздин ыкма</span></h3><div class="chips"><span class="chip"><span data-lang="en">Individual approach to every student</span><span data-lang="ru">Индивидуальный подход к каждому ученику</span><span data-lang="ky">Ар бир окуучуга жеке мамиле</span></span><span class="chip"><span data-lang="en">Project-based learning in middle and upper school</span><span data-lang="ru">Проектное обучение в средней и старшей школе</span><span data-lang="ky">Орто жана жогорку класстарда долбоордук окутуу</span></span><span class="chip"><span data-lang="en">Global and ecological thinking</span><span data-lang="ru">Глобальное и экологическое мышление</span><span data-lang="ky">Глобалдык жана экологиялык ой жүгүртүү</span></span><span class="chip"><span data-lang="en">Emotional intelligence</span><span data-lang="ru">Эмоциональный интеллект</span><span data-lang="ky">Эмоционалдык интеллект</span></span></div></div>
+    </div>
+  </section>
+
+  <section class="sec life" id="life">
+    <div class="wrap">
+      <h2 class="display sec-title"><span data-lang="en">School life</span><span data-lang="ru">Жизнь школы</span><span data-lang="ky">Мектеп турмушу</span></h2>
+      <p class="sec-lead"><span data-lang="en">Beyond lessons, students compete, read, lead and celebrate together.</span><span data-lang="ru">Помимо уроков, ученики участвуют в олимпиадах, читают, учатся лидерству и вместе проводят праздники.</span><span data-lang="ky">Сабактан тышкары окуучулар олимпиадаларга катышып, китеп окушат, лидерликке үйрөнүшөт жана майрамдарды чогуу өткөрүшөт.</span></p>
+      <div class="life-grid">
+        <div class="item">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3a3 3 0 0 1-3 4M7 5H4a3 3 0 0 0 3 4"/></svg></div>
+          <h3><span data-lang="en">Olympiads</span><span data-lang="ru">Олимпиады</span><span data-lang="ky">Олимпиадалар</span></h3>
+          <p><span data-lang="en">Students prepare for and take part in subject olympiads.</span><span data-lang="ru">Ученики готовятся и участвуют в предметных олимпиадах.</span><span data-lang="ky">Окуучулар предметтик олимпиадаларга даярданып, катышышат.</span></p>
+        </div>
+        <div class="item">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
+          <h3><span data-lang="en">Clubs</span><span data-lang="ru">Кружки</span><span data-lang="ky">Ийримдер</span></h3>
+          <p><span data-lang="en">After-school clubs in sports, arts, science and technology.</span><span data-lang="ru">Кружки после уроков: спорт, творчество, наука и технологии.</span><span data-lang="ky">Сабактан кийинки ийримдер: спорт, чыгармачылык, илим жана технология.</span></p>
+        </div>
+        <div class="item">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.8 6 5.5"/></svg></div>
+          <h3><span data-lang="en">Student parliament</span><span data-lang="ru">Школьный парламент</span><span data-lang="ky">Мектеп парламенти</span></h3>
+          <p><span data-lang="en">Students take part in school decisions and organize initiatives.</span><span data-lang="ru">Ученики участвуют в жизни школы и проводят свои инициативы.</span><span data-lang="ky">Окуучулар мектептин жашоосуна катышып, өз демилгелерин ишке ашырышат.</span></p>
+        </div>
+        <div class="item">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM19 19v2H6"/></svg></div>
+          <h3><span data-lang="en">Library</span><span data-lang="ru">Библиотека</span><span data-lang="ky">Китепкана</span></h3>
+          <p><span data-lang="en">Our own school library for reading and study.</span><span data-lang="ru">Собственная школьная библиотека для чтения и учёбы.</span><span data-lang="ky">Окуу жана билим алуу үчүн өзүбүздүн мектеп китепканасы.</span></p>
+        </div>
+        <div class="item">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 21V4l7 3 7-3v17"/><path d="M5 12l7 3 7-3"/></svg></div>
+          <h3><span data-lang="en">Events</span><span data-lang="ru">Мероприятия</span><span data-lang="ky">Иш-чаралар</span></h3>
+          <p><span data-lang="en">Holidays, festivals and school celebrations throughout the year.</span><span data-lang="ru">Праздники, фестивали и школьные события в течение года.</span><span data-lang="ky">Жыл бою майрамдар, фестивалдар жана мектеп иш-чаралары.</span></p>
+        </div>
+        <div class="item">
+          <div class="ic" aria-hidden="true"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
+          <h3>Instagram</h3>
+          <p><span data-lang="en">Daily school news and photos.</span><span data-lang="ru">Новости и фото школы каждый день.</span><span data-lang="ky">Мектептин жаңылыктары жана сүрөттөрү күн сайын.</span><br>
+          <a href="https://www.instagram.com/avenir_international_school" style="color:var(--green);font-weight:600;text-decoration:none">@avenir_international_school</a><br><a href="https://www.instagram.com/avenir2_international_school" style="color:var(--green);font-weight:600;text-decoration:none">@avenir2_international_school</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="campuses">
+    <div class="wrap">
+      <h2 class="display sec-title"><span data-lang="en">Two campuses in Bishkek</span><span data-lang="ru">Два филиала в Бишкеке</span><span data-lang="ky">Бишкекте эки филиал</span></h2>
+      <p class="sec-lead"><span data-lang="en">Choose the campus closest to home.</span><span data-lang="ru">Выберите филиал ближе к дому.</span><span data-lang="ky">Үйүңүзгө жакын филиалды тандаңыз.</span></p>
+      <div class="camp-grid">
+        <article class="camp">
+          <div class="pic" data-src="campus1.jpg"><div class="placeholder">campus1.jpg</div></div>
+          <div class="body">
+            <h3><span data-lang="en">Kok-Jar</span><span data-lang="ru">Кок-Жар</span><span data-lang="ky">Көк-Жар</span></h3>
+            <p><span data-lang="en">15 Nurmanbetova St., Kok-Jar, Oktyabrsky District</span><span data-lang="ru">ул. Нурманбетова 15, ж/м Кок-Жар, Октябрьский район</span><span data-lang="ky">Нурманбетов көч., 15, Көк-Жар к/м, Октябрь району</span></p>
+            <div class="links"><a href="https://2gis.kg/bishkek/search/Нурманбетова%2015%20Кок-Жар"><span data-lang="en">Open in 2GIS</span><span data-lang="ru">Открыть в 2ГИС</span><span data-lang="ky">2ГИСте ачуу</span></a>
+            <a href="https://www.instagram.com/avenir_international_school">Instagram</a></div>
+          </div>
+        </article>
+        <article class="camp">
+          <div class="pic" data-src="campus2.jpg"><div class="placeholder">campus2.jpg</div></div>
+          <div class="body">
+            <h3><span data-lang="en">Vostok-5</span><span data-lang="ru">Восток-5</span><span data-lang="ky">Восток-5</span></h3>
+            <p><span data-lang="en">60 Atay Ogonbaev St.</span><span data-lang="ru">ул. Атая Огонбаева 60</span><span data-lang="ky">Атай Огонбаев көч., 60</span></p>
+            <div class="links"><a href="https://2gis.kg/bishkek/search/Атая%20Огонбаева%2060"><span data-lang="en">Open in 2GIS</span><span data-lang="ru">Открыть в 2ГИС</span><span data-lang="ky">2ГИСте ачуу</span></a>
+            <a href="https://www.instagram.com/avenir2_international_school">Instagram</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec license" id="license">
+    <div class="wrap">
+      <h2 class="display sec-title"><span data-lang="en">License and legal details</span><span data-lang="ru">Лицензия и реквизиты</span><span data-lang="ky">Лицензия жана реквизиттер</span></h2>
+      <p class="sec-lead"><span data-lang="en">Official registration of the school.</span><span data-lang="ru">Официальная регистрация школы.</span><span data-lang="ky">Мектептин расмий каттоосу.</span></p>
+      <div class="doc">
+        <dl>
+          <dt><span data-lang="en">Legal name</span><span data-lang="ru">Юридическое название</span><span data-lang="ky">Юридикалык аталышы</span></dt>
+          <dd>ОсОО «Международная школа «Авенир»</dd>
+          <dt><span data-lang="en">Type of education</span><span data-lang="ru">Вид образования</span><span data-lang="ky">Билим берүүнүн түрү</span></dt>
+          <dd><span data-lang="en">General secondary education, grades 1–12 (K-12)</span><span data-lang="ru">Общее среднее образование, 1–12 классы</span><span data-lang="ky">Жалпы орто билим берүү, 1–12-класстар</span></dd>
+          <dt><span data-lang="en">License number</span><span data-lang="ru">Номер лицензии</span><span data-lang="ky">Лицензиянын номери</span></dt>
+          <dd>№ LM-2025-0002</dd>
+          <dt><span data-lang="en">Issued by</span><span data-lang="ru">Кем выдана</span><span data-lang="ky">Ким тарабынан берилген</span></dt>
+          <dd><span data-lang="en">Ministry of Education of the Kyrgyz Republic</span><span data-lang="ru">Министерство просвещения Кыргызской Республики</span><span data-lang="ky">Кыргыз Республикасынын Агартуу министрлиги</span></dd>
+          <dt><span data-lang="en">Date of issue</span><span data-lang="ru">Дата выдачи</span><span data-lang="ky">Берилген күнү</span></dt>
+          <dd>02.09.2025</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="gallery">
+    <div class="wrap">
+      <h2 class="display sec-title" style="margin-bottom:28px"><span data-lang="en">Photos</span><span data-lang="ru">Фото</span><span data-lang="ky">Сүрөттөр</span></h2>
+      <div class="gallery">
+        <div class="ph" data-src="photo1.jpg"><div class="placeholder">photo1.jpg</div></div>
+        <div class="ph" data-src="photo2.jpg"><div class="placeholder">photo2.jpg</div></div>
+        <div class="ph" data-src="photo3.jpg"><div class="placeholder">photo3.jpg</div></div>
+        <div class="ph" data-src="photo4.jpg"><div class="placeholder">photo4.jpg</div></div>
+        <div class="ph" data-src="photo5.jpg"><div class="placeholder">photo5.jpg</div></div>
+        <div class="ph" data-src="photo6.jpg"><div class="placeholder">photo6.jpg</div></div>
+        <div class="ph" data-src="photo7.jpg"><div class="placeholder">photo7.jpg</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact">
+    <div class="wrap">
+      <h2 class="display sec-title" style="margin-bottom:28px"><span data-lang="en">Contacts</span><span data-lang="ru">Контакты</span><span data-lang="ky">Байланыш</span></h2>
+      <div class="contact-grid">
+        <div class="lines">
+          <a class="line-item" href="tel:+996506783805"><b>+996 506 78 38 05</b><small><span data-lang="en">Admissions</span><span data-lang="ru">Отдел приёма</span><span data-lang="ky">Кабыл алуу бөлүмү</span></small></a>
+          <a class="line-item" href="tel:+996503700800"><b>+996 503 700 800</b><small><span data-lang="en">Kok-Jar campus</span><span data-lang="ru">Филиал Кок-Жар</span><span data-lang="ky">Көк-Жар филиалы</span></small></a>
+          <a class="line-item" href="tel:+996506783800"><b>+996 506 78 38 00</b><small><span data-lang="en">General questions</span><span data-lang="ru">Общие вопросы</span><span data-lang="ky">Жалпы суроолор</span></small></a>
+          <a class="line-item" href="tel:+996506783801"><b>+996 506 78 38 01</b><small><span data-lang="en">General questions</span><span data-lang="ru">Общие вопросы</span><span data-lang="ky">Жалпы суроолор</span></small></a>
+          <a class="line-item" href="mailto:office@avenir.edu.kg"><b>office@avenir.edu.kg</b><small>Email</small></a>
+          <a class="line-item" href="https://wa.me/996506783805"><b>WhatsApp</b><small>+996 506 78 38 05</small></a>
+          <a class="line-item" href="https://www.instagram.com/avenir_international_school"><b>@avenir_international_school</b><small>Instagram · <span data-lang="en">Kok-Jar</span><span data-lang="ru">Кок-Жар</span><span data-lang="ky">Көк-Жар</span></small></a>
+          <a class="line-item" href="https://www.instagram.com/avenir2_international_school"><b>@avenir2_international_school</b><small>Instagram · <span data-lang="en">Vostok-5</span><span data-lang="ru">Восток-5</span><span data-lang="ky">Восток-5</span></small></a>
+        </div>
+        <div class="cta-box">
+          <h3><span data-lang="en">Enrollment for 2027 is open</span><span data-lang="ru">Набор на 2027 год открыт</span><span data-lang="ky">2027-жылга кабыл алуу ачык</span></h3>
+          <p><span data-lang="en">Call admissions to ask about places, tuition and a school visit.</span><span data-lang="ru">Позвоните в приёмную — расскажем о свободных местах, стоимости и экскурсии по школе.</span><span data-lang="ky">Кабыл алуу бөлүмүнө чалыңыз — бош орундар, окуу акысы жана мектепке экскурсия тууралуу айтып беребиз.</span></p>
+          <a class="btn solid" href="tel:+996506783805"><span data-lang="en">Call +996 506 78 38 05</span><span data-lang="ru">Позвонить +996 506 78 38 05</span><span data-lang="ky">Чалуу: +996 506 78 38 05</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 ОсОО «Международная школа «Авенир»</span>
+    <span><a href="https://www.instagram.com/avenir_international_school">Instagram · Kok-Jar</a> &nbsp; <a href="https://www.instagram.com/avenir2_international_school">Instagram · Vostok-5</a></span>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.set === l); });
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.set); }); });
+  try{ var saved = localStorage.getItem('lang'); if(saved) setLang(saved); }catch(e){}
+
+  document.querySelectorAll('[data-src]').forEach(function(el){
+    var src = el.getAttribute('data-src'), img = new Image();
+    img.onload = function(){
+      el.style.backgroundImage = 'url("' + src + '")';
+      var ph = (el.classList.contains('img') ? el.parentNode : el).querySelector('.placeholder');
+      if(ph) ph.remove();
+    };
+    img.src = src;
+  });
+  var hdr=document.getElementById('hdr');
+  function onScroll(){ hdr.classList.toggle('solid', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var burger=document.querySelector('.burger');
+  function setOpen(o){ hdr.classList.toggle('open',o); burger.setAttribute('aria-expanded',o); }
+  burger.addEventListener('click',function(){ setOpen(!hdr.classList.contains('open')); });
+  document.querySelectorAll('.mnav a').forEach(function(a){ a.addEventListener('click',function(){ setOpen(false); }); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') setOpen(false); });
+</script>
+</body>
+</html>
